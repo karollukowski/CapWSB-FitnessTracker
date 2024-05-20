@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.api;
 
 import java.util.List;
+import java.time.LocalDate;
 import java.util.Optional;
 
 public interface UserProvider {
@@ -28,6 +29,16 @@ public interface UserProvider {
      *
      * @return An {@link Optional} containing the all users,
      */
+
     List<User> findAllUsers();
 
+    void deleteUser(Long userId);
+
+    User updateUser(User user);
+
+    List<User> findUsersByEmail(String email);
+
+    List<User> findUsersByNameFragment(String nameFragment);
+
+    List<User> findUsersOlderThan(LocalDate date);
 }
