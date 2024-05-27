@@ -14,8 +14,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")
     List<User> findByEmailIgnoreCase(@Param("email") String email);
 
-    @Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE LOWER(CONCAT('%', :nameFragment, '%'))")
-    List<User> findByNameContainingIgnoreCase(@Param("nameFragment") String nameFragment);
+    @Query("SELECT u FROM User u WHERE LOWER(u.firstName) LIKE LOWER(CONCAT('%', :nameFragment, '%'))")
+    List<User> findByFirstNameContainingIgnoreCase(@Param("nameFragment") String nameFragment);
 
     /**
      * Query searching users by email address. It matches by exact match.

@@ -60,7 +60,7 @@ class UserServiceImpl implements UserService, UserProvider {
 
     @Override
     public List<User> findUsersByNameFragment(final String nameFragment) {
-        return userRepository.findByNameContainingIgnoreCase(nameFragment);
+        return userRepository.findByFirstNameContainingIgnoreCase(nameFragment);
     }
 
     @Override
@@ -69,4 +69,5 @@ class UserServiceImpl implements UserService, UserProvider {
                 .filter(user -> user.getBirthdate().isBefore(date))
                 .collect(Collectors.toList());
     }
+
 }

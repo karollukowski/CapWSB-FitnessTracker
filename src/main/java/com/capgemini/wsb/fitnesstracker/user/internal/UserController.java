@@ -4,6 +4,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.time.LocalDate;
 @RequestMapping("/v1/users")
 @RequiredArgsConstructor
 class UserController {
+
+    @Autowired
 
     private final UserServiceImpl userService;
 
@@ -33,8 +36,11 @@ class UserController {
         System.out.println("User with e-mail: " + userDto.email() + "passed to the request");
 
         // TODO: saveUser with Service and return User
-        return null;
+        User user = new User(userDto.firstName(), userDto.lastName(), userDto.birthdate(), userDto.email());
+
+        return userService.createUser(user);
     }
+
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {

@@ -42,7 +42,7 @@ public class TrainingServiceImplTest {
     @Test
     void shouldCreateTraining() {
         TrainingDto trainingDto = new TrainingDto();
-        User user = new User("Jan", "Kowalczyk", LocalDate.now(), "jan.kowalczyk@gmail.com");
+        User user = new User("Emma", "Johnson", LocalDate.now(), "emma.johnson@domain.com");
         Training training = new Training(user, new Date(), new Date(), ActivityType.RUNNING, 4.0, 3.5);
 
         when(userRepository.findById(anyLong())).thenReturn(Optional.of(user));
@@ -58,7 +58,7 @@ public class TrainingServiceImplTest {
     @Test
     void shouldUpdateTraining() {
         TrainingDto trainingDto = new TrainingDto();
-        User user = new User("Jan", "Kowalczyk", LocalDate.now(), "jan.kowalczyk@gmail.com");
+        User user = new User("Emma", "Johnson", LocalDate.now(), "emma.johnson@domain.com");
         Training existingTraining = new Training(user, new Date(), new Date(), ActivityType.RUNNING, 9.0, 5.0);
         Training updatedTraining = new Training(user, new Date(), new Date(), ActivityType.RUNNING, 12.0, 7.5);
 
@@ -75,7 +75,7 @@ public class TrainingServiceImplTest {
 
     @Test
     void shouldGetAllTrainings() {
-        Training training = new Training(new User("Jan", "Kowalczyk", LocalDate.now(), "jan.kowalczyk@gmail.com"), new Date(), new Date(), ActivityType.RUNNING, 10.0, 5.0);
+        Training training = new Training(new User("Emma", "Johnson", LocalDate.now(), "emma.johnson@domain.com"), new Date(), new Date(), ActivityType.RUNNING, 10.0, 5.0);
         List<Training> trainings = Collections.singletonList(training);
 
         when(trainingRepository.findAll()).thenReturn(trainings);
