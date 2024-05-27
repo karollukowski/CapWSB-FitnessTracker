@@ -31,7 +31,7 @@ class UserServiceImplTest {
 
     @Test
     void shouldCreateUser() {
-        User user = new User("Black", "Beard", LocalDate.now(), "blackbeard@example.com");
+        User user = new User("Black", "Beard", LocalDate.now(), "blackbeard@gmail.com");
         when(userRepository.save(any(User.class))).thenReturn(user);
 
         User result = userService.createUser(user);
@@ -42,7 +42,7 @@ class UserServiceImplTest {
 
     @Test
     void shouldGetUser() {
-        User user = new User("Black", "Beard", LocalDate.now(), "blackbeard@example.com");
+        User user = new User("Black", "Beard", LocalDate.now(), "blackbeard@gmail.com");
         when(userRepository.findById(anyLong())).thenReturn(Optional.of(user));
 
         Optional<User> result = userService.getUser(1L);

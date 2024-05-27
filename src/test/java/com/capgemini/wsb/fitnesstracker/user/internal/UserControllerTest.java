@@ -39,8 +39,8 @@ class UserControllerTest {
 
     @Test
     void shouldGetAllUsers() throws Exception {
-        User user = new User("Black", "Beard", LocalDate.now(), "blackbeard@example.com");
-        UserDto userDto = new UserDto(1L, "Black", "Beard", LocalDate.now(), "blackbeard@example.com");
+        User user = new User("Black", "Beard", LocalDate.now(), "blackbeard@gmail.com");
+        UserDto userDto = new UserDto(1L, "Black", "Beard", LocalDate.now(), "blackbeard@gmail.com");
         List<User> users = Collections.singletonList(user);
 
         when(userService.findAllUsers()).thenReturn(users);
