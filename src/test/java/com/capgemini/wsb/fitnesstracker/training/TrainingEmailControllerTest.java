@@ -57,4 +57,33 @@ public class TrainingEmailControllerTest {
         verify(emailService, times(1)).sendTrainingCompletionEmail(any(TrainingCompletionRequest.class));
     }
 
+    /**
+     * Test that a bad request is returned when the request body is missing
+     * @throws Exception
+     */
+    @Test
+    public void shouldReturnBadRequestWhenRequestBodyIsMissing() throws Exception {
+        mockMvc.perform(post("/api/training-emails")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        verify(emailService, times(0)).sendTrainingCompletionEmail(any(TrainingCompletionRequest.class));
+    }
+
+    /**
+     * Test that returns ok when email is successfully sent
+     * @throws Exception
+     */
+    @Test
+    public void shouldReturnOkWhenEmailIsSuccessfullySent() throws Exception {
+        doNothing().when(emailService).sendTrainingCompletionEmail(any(TrainingCompletionRequest.class));
+
+        mockMvc.perform(post("/api/training-emails")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"userId\":1,\"userEmail\":\"Emma.Johnson@domain.com\",\"activityName\":\"Running\",\"activityDuration\":30,\"additionalText\":\"Świetnie!\"}"))
+                .andExpect(status().isOk());
+
+        verify(emailService, times(1)).sendTrainingCompletionEmail(any(TrainingCompletionRequest.class));
+    }
+
 }
