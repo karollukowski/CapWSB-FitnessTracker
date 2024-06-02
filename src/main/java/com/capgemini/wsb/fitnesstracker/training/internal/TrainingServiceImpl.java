@@ -22,13 +22,17 @@ import java.util.stream.Collectors;
 
 /**
  * Service implementation for training management.
-
  */
 @Service
 public class TrainingServiceImpl implements TrainingProvider {
 
     private final ApplicationEventPublisher eventPublisher;
 
+    /**
+     * Creates a new instance of {@link TrainingServiceImpl}.
+     *
+     * @param eventPublisher the event publisher
+     */
     public TrainingServiceImpl(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
     }
@@ -42,11 +46,24 @@ public class TrainingServiceImpl implements TrainingProvider {
     @Autowired
     private TrainingMapper trainingMapper;
 
+    /**
+     * Retrieves a training based on their ID.
+     * If the user with given ID is not found, then {@link Optional#empty()} will be returned.
+     *
+     * @param trainingId id of the training to be searched
+     * @return An {@link Optional} containing the located Training, or {@link Optional#empty()} if not found
+     */
     @Override
     public Optional<User> getTraining(final Long trainingId) {
         throw new UnsupportedOperationException("Not finished yet");
     }
 
+    /**
+     * Creates a new training.
+     *
+     * @param trainingDto the training to be created
+     * @return the created training
+     */
     @Override
     public Training createTraining(TrainingDto trainingDto) {
         User user = userRepository.findById(trainingDto.getUserId())
@@ -66,11 +83,23 @@ public class TrainingServiceImpl implements TrainingProvider {
         return trainingRepository.findAll();
     }
 
+    /**
+     * Retrieves all trainings for a given user.
+     *
+     * @param userId the ID of the user
+     * @return List of all trainings for the user
+     */
     @Override
     public List<Training> getTrainingsByUser(Long userId) {
         return trainingRepository.findAllByUserId(userId);
     }
 
+    /**
+     * Retrieves all trainings completed on a given date.
+     *
+     * @param date the date after which the trainings were completed
+     * @return List of all trainings completed on the given date
+     */
     @Override
     public List<Training> getCompletedTrainings(Date date) {
         return trainingRepository.findAll().stream()
@@ -78,11 +107,24 @@ public class TrainingServiceImpl implements TrainingProvider {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves all trainings of a given activity type.
+     *
+     * @param activityType the type of the activity
+     * @return List of all trainings of the given activity type
+     */
     @Override
     public List<Training> getTrainingsByActivity(ActivityType activityType) {
         return trainingRepository.findAllByActivityType(activityType);
     }
 
+    /**
+     * Updates a training.
+     *
+     * @param trainingId the ID of the training to be updated
+     * @param trainingDto the updated training
+     * @return the updated training
+     */
     @Override
     public Training updateTraining(Long trainingId, TrainingDto trainingDto) {
         Training existingTraining = trainingRepository.findById(trainingId)
@@ -102,12 +144,4 @@ public class TrainingServiceImpl implements TrainingProvider {
 
         return updatedTraining;
     }
-    /**
-     * Retrieves a training based on their ID.
-     * If the user with given ID is not found, then {@link Optional#empty()} will be returned.
-     *
-     * @param trainingId id of the training to be searched
-     * @return An {@link Optional} containing the located Training, or {@link Optional#empty()} if not found
-     */
-
 }

@@ -43,26 +43,51 @@ class UserServiceImpl implements UserService, UserProvider {
         return userRepository.findAll();
     }
 
+    /**
+     * Deletes a user based on their ID.
+     *
+     * @param userId id of the user to be deleted
+     */
     @Override
     public void deleteUser(final Long userId) {
         userRepository.deleteById(userId);
     }
 
+    /**
+     * Updates a user.
+     *
+     * @param user the user to be updated
+     */
     @Override
     public User updateUser(final User user) {
         return userRepository.save(user);
     }
 
+    /**
+     * Finds users by email.
+     *
+     * @param email the email to search for
+     */
     @Override
     public List<User> findUsersByEmail(final String email) {
         return userRepository.findByEmailIgnoreCase(email);
     }
 
+    /**
+     * Finds users by name fragment.
+     *
+     * @param nameFragment the name fragment to search for
+     */
     @Override
     public List<User> findUsersByNameFragment(final String nameFragment) {
         return userRepository.findByFirstNameContainingIgnoreCase(nameFragment);
     }
 
+    /**
+     * Finds users older than a given date.
+     *
+     * @param date the date to compare
+     */
     @Override
     public List<User> findUsersOlderThan(final LocalDate date) {
         return userRepository.findAll().stream()

@@ -29,16 +29,40 @@ public interface UserProvider {
      *
      * @return An {@link Optional} containing the all users,
      */
-
     List<User> findAllUsers();
 
+    /**
+     * Deletes a user based on their ID.
+     *
+     * @param userId id of the user to be deleted
+     */
     void deleteUser(Long userId);
 
+    /**
+     * Updates a user.
+     *
+     * @param user the user to be updated
+     */
     User updateUser(User user);
 
+    /**
+     * Finds users by email.
+     *
+     * @param email the email to search for
+     */
     List<User> findUsersByEmail(String email);
 
+    /**
+     * Finds users by name fragment.
+     *
+     * @param nameFragment the name fragment to search for
+     */
     List<User> findUsersByNameFragment(String nameFragment);
 
+    /**
+     * Finds users older than a given date.
+     *
+     * @param date the date to compare
+     */
     List<User> findUsersOlderThan(LocalDate date);
 }

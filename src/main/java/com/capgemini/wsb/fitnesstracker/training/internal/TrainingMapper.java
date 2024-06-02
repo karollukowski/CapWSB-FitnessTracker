@@ -5,8 +5,19 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingDto;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * Mapper for converting between {@link Training} and {@link TrainingDto}.
+ */
 @Component
 public class TrainingMapper {
+
+    /**
+     * Converts a {@link Training} to a {@link TrainingDto}.
+     *
+     * @param training the training to be converted
+     * @return the converted training
+     */
 
     public TrainingDto toDto(Training training) {
         TrainingDto dto = new TrainingDto();
@@ -20,6 +31,14 @@ public class TrainingMapper {
         return dto;
     }
 
+    /**
+     * Converts a {@link TrainingDto} to a {@link Training}.
+     *
+     * @param dto the training to be converted
+     * @param user the user to be associated with the training
+     * @return the converted training entity
+     */
+
     public Training toEntity(TrainingDto dto, User user) {
         Training training = new Training(
                 user,
@@ -31,6 +50,14 @@ public class TrainingMapper {
         );
         return training;
     }
+
+    /**
+     * Updates a {@link Training} entity with data from a {@link TrainingDto}.
+     *
+     * @param dto the training data
+     * @param user the user to be associated with the training
+     * @return the updated training entity
+     */
 
     public Training updateEntityFromDto(TrainingDto dto, User user) {
         return new Training(

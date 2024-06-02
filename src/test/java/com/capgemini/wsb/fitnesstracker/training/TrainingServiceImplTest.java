@@ -19,6 +19,9 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for TrainingServiceImpl
+ */
 public class TrainingServiceImplTest {
 
 
@@ -34,11 +37,17 @@ public class TrainingServiceImplTest {
     @InjectMocks
     TrainingServiceImpl trainingService;
 
+    /**
+     * Set up mocks
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Test that a training can be created
+     */
     @Test
     void shouldCreateTraining() {
         TrainingDto trainingDto = new TrainingDto();
@@ -56,6 +65,9 @@ public class TrainingServiceImplTest {
         assertEquals(training, result);
     }
 
+    /**
+     * Test that a training can be updated
+     */
     @Test
     void shouldUpdateTraining() {
         TrainingDto trainingDto = new TrainingDto();
@@ -75,6 +87,9 @@ public class TrainingServiceImplTest {
         assertEquals(updatedTraining, result);
     }
 
+    /**
+     * Tests the retrieval of all trainings
+     */
     @Test
     void shouldGetAllTrainings() {
         Training training = new Training(new User("Emma", "Johnson", LocalDate.now(), "Emma.Johnson@domain.com"), new Date(), new Date(), ActivityType.RUNNING, 10.0, 5.0);

@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 /**
  * Service for sending emails.
  */
-
 @Service
 public class EmailService {
     private final EmailSender emailSender;
 
+    /**
+     * Creates an instance of the service.
+     * @param emailSender email sender
+     */
     public EmailService(EmailSender emailSender) {
         this.emailSender = emailSender;
     }
@@ -20,7 +23,6 @@ public class EmailService {
      * Sends an email with information about training completion.
      * @param request training information
      */
-
     public void sendTrainingCompletionEmail(TrainingCompletionRequest request) {
 
         String toAddress = request.getUserEmail();
